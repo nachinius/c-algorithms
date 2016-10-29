@@ -57,14 +57,14 @@ int hash(int key, int p, int m, int a, int b) {
     a4 = a3 % m;
     return a4;
 }
-int hashKeyForHashStr(hash_str *h, int key) {
+int hash_key(hash_str *h, int key) {
     return hash(key, h->p, h->m, h->a, h->b);
 }
 
 void hash_insert(hash_str *h, int key, void *element) {
 
     int hk;
-    hk = hashKeyForHashStr(h, key);
+    hk = hash_key(h, key);
 
     list *p,*r = NULL;
     list **a = NULL;
@@ -97,7 +97,7 @@ void * hash_get(hash_str *h, int key) {
     list **a = NULL;
 
     int hk;
-    hk = hashKeyForHashStr(h, key);
+    hk = hash_key(h, key);
 
     a = h->rows + hk;
 
