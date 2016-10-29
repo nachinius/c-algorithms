@@ -6,6 +6,7 @@
 
 #include <assert.h>
 #include <stdlib.h>
+#include <printf.h>
 #include "hash.h"
 
 void hash_unit_init_and_free() {
@@ -98,3 +99,8 @@ void hash_unit_test() {
     hash_unit_delete_return_1_if_found();
 }
 
+int main(int argc, char **argv) {
+    printf("entering unit test hash\n");
+    hash_unit_test();
+    return 0;
+}
