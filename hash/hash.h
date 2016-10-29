@@ -13,7 +13,7 @@ typedef struct slist {
 } list;
 
 typedef struct {
-    list **rows;
+    list **rows; // keep elements that collision in a linked list
 
     int p; // prime to use for hash
     int m; // size of table
@@ -26,8 +26,6 @@ hash_str * hash_init();
 
 void hash_insert(hash_str *h, int key, void *element);
 
-void hash_delete(hash_str *h, int key);
-
 void * hash_get(hash_str *h, int key);
 
 void hash_free(hash_str *h);
@@ -35,5 +33,7 @@ void hash_free(hash_str *h);
 void hash_print(hash_str *h);
 
 int hash_key(hash_str *h, int key);
+
+int hash_delete(hash_str *h, int key);
 
 #endif //ALGC_HASH_H

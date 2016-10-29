@@ -72,6 +72,7 @@ void hash_insert(hash_str *h, int key, void *element) {
 
     p = *a;
 
+    // try to find if the key already exists
     while( NULL != p && p->key != key) {
         p = p->next;
     }
@@ -133,3 +134,35 @@ void hash_print(hash_str *h) {
     }
 }
 
+int hash_delete(hash_str *h, int key) {
+    list *p,*r;
+    list **a = NULL;
+
+    int hk;
+    hk = hash_key(h, key);
+
+    a = h->rows + hk;
+
+    r = NULL;
+    p = *a;
+
+    while( NULL != p && p->key != key) {
+        r = p;
+        p = p->next;
+    }
+
+    if(NULL == p) return 0; // not found
+    else {
+        if (NULL == r) { // first
+            *a = NULL;
+            free(p);
+        } else {
+            r->next = p->next;
+            if(NULL != p->next) { // fix the back of the next
+                p->back = r;
+            }
+            free(p);
+        }
+        return 1;
+    }
+}
